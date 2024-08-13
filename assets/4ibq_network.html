@@ -1,0 +1,709 @@
+
+        <!DOCTYPE html>
+        <meta charset="utf-8">
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+            svg {
+                display: block;
+            }
+        </style>
+        <svg width="100%" height="100%"></svg>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+        var nodes = [
+            {id: '97', label: '97VAL'},
+    {id: '98', label: '98PRO'},
+    {id: '99', label: '99SER'},
+    {id: '100', label: '100GLN'},
+    {id: '101', label: '101LYS'},
+    {id: '102', label: '102THR'},
+    {id: '103', label: '103TYR'},
+    {id: '104', label: '104GLN'},
+    {id: '105', label: '105GLY'},
+    {id: '106', label: '106SER'},
+    {id: '107', label: '107TYR'},
+    {id: '108', label: '108GLY'},
+    {id: '109', label: '109PHE'},
+    {id: '110', label: '110ARG'},
+    {id: '111', label: '111LEU'},
+    {id: '112', label: '112GLY'},
+    {id: '113', label: '113PHE'},
+    {id: '114', label: '114LEU'},
+    {id: '116', label: '116SER'},
+    {id: '117', label: '117GLY'},
+    {id: '118', label: '118THR'},
+    {id: '119', label: '119ALA'},
+    {id: '122', label: '122VAL'},
+    {id: '123', label: '123THR'},
+    {id: '124', label: '124CYS'},
+    {id: '125', label: '125THR'},
+    {id: '126', label: '126TYR'},
+    {id: '127', label: '127SER'},
+    {id: '128', label: '128PRO'},
+    {id: '129', label: '129ALA'},
+    {id: '130', label: '130LEU'},
+    {id: '131', label: '131ASN'},
+    {id: '132', label: '132LYS'},
+    {id: '133', label: '133MET'},
+    {id: '134', label: '134PHE'},
+    {id: '135', label: '135CYS'},
+    {id: '136', label: '136GLN'},
+    {id: '137', label: '137LEU'},
+    {id: '138', label: '138ALA'},
+    {id: '139', label: '139LYS'},
+    {id: '140', label: '140THR'},
+    {id: '141', label: '141CYS'},
+    {id: '142', label: '142PRO'},
+    {id: '143', label: '143VAL'},
+    {id: '144', label: '144GLN'},
+    {id: '145', label: '145LEU'},
+    {id: '146', label: '146TRP'},
+    {id: '147', label: '147VAL'},
+    {id: '150', label: '150THR'},
+    {id: '151', label: '151PRO'},
+    {id: '152', label: '152PRO'},
+    {id: '153', label: '153PRO'},
+    {id: '154', label: '154GLY'},
+    {id: '155', label: '155THR'},
+    {id: '156', label: '156ARG'},
+    {id: '157', label: '157VAL'},
+    {id: '158', label: '158ARG'},
+    {id: '159', label: '159ALA'},
+    {id: '160', label: '160MET'},
+    {id: '161', label: '161ALA'},
+    {id: '162', label: '162ILE'},
+    {id: '163', label: '163TYR'},
+    {id: '164', label: '164LYS'},
+    {id: '165', label: '165GLN'},
+    {id: '166', label: '166SER'},
+    {id: '168', label: '168HIS'},
+    {id: '171', label: '171GLU'},
+    {id: '172', label: '172VAL'},
+    {id: '173', label: '173VAL'},
+    {id: '174', label: '174ARG'},
+    {id: '175', label: '175ARG'},
+    {id: '176', label: '176CYS'},
+    {id: '177', label: '177PRO'},
+    {id: '178', label: '178HIS'},
+    {id: '179', label: '179HIS'},
+    {id: '180', label: '180GLU'},
+    {id: '182', label: '182CYS'},
+    {id: '184', label: '184ASP'},
+    {id: '185', label: '185SER'},
+    {id: '186', label: '186ASP'},
+    {id: '188', label: '188LEU'},
+    {id: '189', label: '189ALA'},
+    {id: '190', label: '190PRO'},
+    {id: '192', label: '192GLN'},
+    {id: '193', label: '193HIS'},
+    {id: '194', label: '194LEU'},
+    {id: '195', label: '195ILE'},
+    {id: '196', label: '196ARG'},
+    {id: '197', label: '197VAL'},
+    {id: '198', label: '198GLU'},
+    {id: '200', label: '200ASN'},
+    {id: '202', label: '202ARG'},
+    {id: '203', label: '203VAL'},
+    {id: '204', label: '204GLU'},
+    {id: '205', label: '205TYR'},
+    {id: '206', label: '206LEU'},
+    {id: '208', label: '208ASP'},
+    {id: '209', label: '209ARG'},
+    {id: '218', label: '218VAL'},
+    {id: '221', label: '221GLU'},
+    {id: '222', label: '222PRO'},
+    {id: '223', label: '223PRO'},
+    {id: '224', label: '224GLU'},
+    {id: '234', label: '234TYR'},
+    {id: '236', label: '236TYR'},
+    {id: '237', label: '237MET'},
+    {id: '238', label: '238CYS'},
+    {id: '239', label: '239ASN'},
+    {id: '240', label: '240SER'},
+    {id: '241', label: '241SER'},
+    {id: '242', label: '242CYS'},
+    {id: '243', label: '243MET'},
+    {id: '244', label: '244GLY'},
+    {id: '246', label: '246MET'},
+    {id: '251', label: '251ILE'},
+    {id: '252', label: '252LEU'},
+    {id: '253', label: '253THR'},
+    {id: '254', label: '254ILE'},
+    {id: '255', label: '255ILE'},
+    {id: '256', label: '256THR'},
+    {id: '257', label: '257LEU'},
+    {id: '258', label: '258GLU'},
+    {id: '259', label: '259ASP'},
+    {id: '264', label: '264LEU'},
+    {id: '275', label: '275CYS'},
+    {id: '276', label: '276ALA'},
+    {id: '277', label: '277CYS'},
+    {id: '278', label: '278PRO'},
+    {id: '279', label: '279GLY'},
+    {id: '280', label: '280ARG'},
+    {id: '281', label: '281ASP'},
+    {id: '282', label: '282ARG'},
+    {id: '283', label: '283ARG'},
+    {id: '284', label: '284THR'},
+    {id: '285', label: '285GLU'},
+    {id: '169', label: '169MET'},
+    {id: '170', label: '170THR'},
+    {id: '213', label: '213ARG'},
+    {id: '267', label: '267ARG'},
+    {id: '268', label: '268ASN'},
+    {id: '269', label: '269SER'},
+    {id: '265', label: '265LEU'},
+    {id: '266', label: '266GLY'},
+    {id: '148', label: '148ASP'},
+    {id: '149', label: '149SER'},
+    {id: '270', label: '270PHE'},
+    {id: '286', label: '286GLU'},
+    {id: '271', label: '271GLU'},
+    {id: '272', label: '272VAL'},
+    {id: '273', label: '273CYS'},
+    {id: '274', label: '274VAL'},
+    {id: '235', label: '235ASN'},
+    {id: '233', label: '233HIS'},
+    {id: '231', label: '231THR'},
+    {id: '232', label: '232ILE'},
+    {id: '229', label: '229CYS'},
+    {id: '220', label: '220TYR'},
+    {id: '230', label: '230THR'},
+    {id: '228', label: '228ASP'},
+    {id: '302', label: '302ACT'},
+    {id: '260', label: '260SER'},
+    {id: '217', label: '217VAL'},
+    {id: '215', label: '215SER'},
+    {id: '216', label: '216VAL'},
+    {id: '214', label: '214HIS'},
+    {id: '249', label: '249ARG'},
+    {id: '250', label: '250PRO'},
+    {id: '212', label: '212PHE'},
+    {id: '181', label: '181ARG'},
+    {id: '301', label: '301ZN'},
+    {id: '191', label: '191PRO'},
+    {id: '207', label: '207ASP'},
+    {id: '219', label: '219PRO'},
+    {id: '211', label: '211THR'},
+    {id: '227', label: '227SER'},
+    {id: '247', label: '247ASN'},
+    {id: '248', label: '248ARG'},
+    {id: '245', label: '245GLY'},
+    {id: '262', label: '262GLY'},
+    {id: '263', label: '263ASN'},
+    {id: '287', label: '287GLU'},
+    {id: '288', label: '288ASN'},
+
+        ]
+    
+        var links = [
+            {source: '97', target: '169', strength: 2.0},
+    {source: '97', target: '170', strength: 2.0},
+    {source: '98', target: '160', strength: 2.0},
+    {source: '98', target: '162', strength: 2.0},
+    {source: '98', target: '213', strength: 2.0},
+    {source: '99', target: '267', strength: 2.0},
+    {source: '100', target: '162', strength: 2.0},
+    {source: '100', target: '252', strength: 2.0},
+    {source: '100', target: '254', strength: 2.0},
+    {source: '100', target: '267', strength: 2.0},
+    {source: '101', target: '267', strength: 2.0},
+    {source: '102', target: '268', strength: 2.0},
+    {source: '102', target: '269', strength: 2.0},
+    {source: '103', target: '106', strength: 2.0},
+    {source: '103', target: '109', strength: 2.0},
+    {source: '103', target: '264', strength: 2.0},
+    {source: '103', target: '265', strength: 2.0},
+    {source: '103', target: '266', strength: 2.0},
+    {source: '103', target: '267', strength: 2.0},
+    {source: '103', target: '268', strength: 2.0},
+    {source: '104', target: '107', strength: 2.0},
+    {source: '104', target: '108', strength: 2.0},
+    {source: '104', target: '109', strength: 2.0},
+    {source: '104', target: '110', strength: 2.0},
+    {source: '105', target: '108', strength: 2.0},
+    {source: '105', target: '109', strength: 2.0},
+    {source: '106', target: '265', strength: 2.0},
+    {source: '107', target: '148', strength: 2.0},
+    {source: '107', target: '149', strength: 2.0},
+    {source: '107', target: '150', strength: 2.0},
+    {source: '107', target: '151', strength: 2.0},
+    {source: '107', target: '152', strength: 2.0},
+    {source: '107', target: '265', strength: 2.0},
+    {source: '108', target: '148', strength: 2.0},
+    {source: '109', target: '145', strength: 2.0},
+    {source: '109', target: '255', strength: 2.0},
+    {source: '109', target: '257', strength: 2.0},
+    {source: '109', target: '266', strength: 2.0},
+    {source: '109', target: '268', strength: 2.0},
+    {source: '110', target: '146', strength: 2.0},
+    {source: '110', target: '148', strength: 2.0},
+    {source: '111', target: '143', strength: 2.0},
+    {source: '111', target: '145', strength: 2.0},
+    {source: '111', target: '146', strength: 2.0},
+    {source: '111', target: '255', strength: 2.0},
+    {source: '111', target: '268', strength: 2.0},
+    {source: '111', target: '270', strength: 2.0},
+    {source: '112', target: '144', strength: 2.0},
+    {source: '113', target: '126', strength: 2.0},
+    {source: '113', target: '133', strength: 2.0},
+    {source: '113', target: '144', strength: 2.0},
+    {source: '113', target: '270', strength: 2.0},
+    {source: '114', target: '126', strength: 2.0},
+    {source: '114', target: '142', strength: 2.0},
+    {source: '114', target: '144', strength: 2.0},
+    {source: '116', target: '119', strength: 2.0},
+    {source: '116', target: '125', strength: 2.0},
+    {source: '116', target: '282', strength: 2.0},
+    {source: '117', target: '282', strength: 2.0},
+    {source: '118', target: '122', strength: 2.0},
+    {source: '118', target: '279', strength: 2.0},
+    {source: '118', target: '282', strength: 2.0},
+    {source: '118', target: '283', strength: 2.0},
+    {source: '119', target: '122', strength: 2.0},
+    {source: '119', target: '279', strength: 2.0},
+    {source: '122', target: '136', strength: 2.0},
+    {source: '122', target: '279', strength: 2.0},
+    {source: '123', target: '136', strength: 2.0},
+    {source: '123', target: '139', strength: 2.0},
+    {source: '123', target: '140', strength: 2.0},
+    {source: '123', target: '278', strength: 2.0},
+    {source: '124', target: '133', strength: 2.0},
+    {source: '124', target: '135', strength: 2.0},
+    {source: '124', target: '141', strength: 2.0},
+    {source: '124', target: '142', strength: 2.0},
+    {source: '125', target: '133', strength: 2.0},
+    {source: '125', target: '134', strength: 2.0},
+    {source: '125', target: '278', strength: 2.0},
+    {source: '125', target: '282', strength: 2.0},
+    {source: '126', target: '131', strength: 2.0},
+    {source: '126', target: '132', strength: 2.0},
+    {source: '126', target: '133', strength: 2.0},
+    {source: '126', target: '282', strength: 2.0},
+    {source: '127', target: '130', strength: 2.0},
+    {source: '127', target: '131', strength: 2.0},
+    {source: '127', target: '132', strength: 2.0},
+    {source: '127', target: '134', strength: 2.0},
+    {source: '127', target: '282', strength: 2.0},
+    {source: '127', target: '286', strength: 2.0},
+    {source: '128', target: '131', strength: 2.0},
+    {source: '129', target: '286', strength: 2.0},
+    {source: '130', target: '134', strength: 2.0},
+    {source: '130', target: '285', strength: 2.0},
+    {source: '130', target: '286', strength: 2.0},
+    {source: '131', target: '270', strength: 2.0},
+    {source: '131', target: '271', strength: 2.0},
+    {source: '132', target: '271', strength: 2.0},
+    {source: '132', target: '272', strength: 2.0},
+    {source: '132', target: '273', strength: 2.0},
+    {source: '132', target: '285', strength: 2.0},
+    {source: '133', target: '270', strength: 2.0},
+    {source: '133', target: '271', strength: 2.0},
+    {source: '133', target: '273', strength: 2.0},
+    {source: '134', target: '273', strength: 2.0},
+    {source: '134', target: '278', strength: 2.0},
+    {source: '134', target: '281', strength: 2.0},
+    {source: '134', target: '282', strength: 2.0},
+    {source: '134', target: '285', strength: 2.0},
+    {source: '135', target: '141', strength: 2.0},
+    {source: '135', target: '236', strength: 2.0},
+    {source: '135', target: '272', strength: 2.0},
+    {source: '135', target: '273', strength: 2.0},
+    {source: '135', target: '274', strength: 2.0},
+    {source: '135', target: '275', strength: 2.0},
+    {source: '135', target: '278', strength: 2.0},
+    {source: '136', target: '139', strength: 2.0},
+    {source: '136', target: '236', strength: 2.0},
+    {source: '136', target: '274', strength: 2.0},
+    {source: '136', target: '278', strength: 2.0},
+    {source: '137', target: '179', strength: 2.0},
+    {source: '137', target: '237', strength: 2.0},
+    {source: '137', target: '238', strength: 2.0},
+    {source: '137', target: '239', strength: 2.0},
+    {source: '137', target: '274', strength: 2.0},
+    {source: '137', target: '275', strength: 2.0},
+    {source: '138', target: '235', strength: 2.0},
+    {source: '138', target: '236', strength: 2.0},
+    {source: '138', target: '237', strength: 2.0},
+    {source: '139', target: '235', strength: 2.0},
+    {source: '139', target: '236', strength: 2.0},
+    {source: '140', target: '198', strength: 2.0},
+    {source: '140', target: '233', strength: 2.0},
+    {source: '141', target: '198', strength: 2.0},
+    {source: '141', target: '233', strength: 2.0},
+    {source: '141', target: '234', strength: 2.0},
+    {source: '141', target: '235', strength: 2.0},
+    {source: '141', target: '236', strength: 2.0},
+    {source: '142', target: '231', strength: 2.0},
+    {source: '143', target: '232', strength: 2.0},
+    {source: '143', target: '234', strength: 2.0},
+    {source: '143', target: '270', strength: 2.0},
+    {source: '144', target: '229', strength: 2.0},
+    {source: '145', target: '157', strength: 2.0},
+    {source: '145', target: '220', strength: 2.0},
+    {source: '145', target: '229', strength: 2.0},
+    {source: '145', target: '230', strength: 2.0},
+    {source: '145', target: '232', strength: 2.0},
+    {source: '146', target: '228', strength: 2.0},
+    {source: '146', target: '229', strength: 2.0},
+    {source: '147', target: '151', strength: 2.0},
+    {source: '147', target: '228', strength: 2.0},
+    {source: '150', target: '302', strength: 2.0},
+    {source: '151', target: '155', strength: 2.0},
+    {source: '151', target: '220', strength: 2.0},
+    {source: '151', target: '257', strength: 2.0},
+    {source: '152', target: '155', strength: 2.0},
+    {source: '153', target: '260', strength: 2.0},
+    {source: '154', target: '260', strength: 2.0},
+    {source: '155', target: '220', strength: 2.0},
+    {source: '155', target: '257', strength: 2.0},
+    {source: '156', target: '204', strength: 2.0},
+    {source: '156', target: '217', strength: 2.0},
+    {source: '156', target: '220', strength: 2.0},
+    {source: '156', target: '258', strength: 2.0},
+    {source: '156', target: '259', strength: 2.0},
+    {source: '157', target: '217', strength: 2.0},
+    {source: '157', target: '218', strength: 2.0},
+    {source: '157', target: '220', strength: 2.0},
+    {source: '157', target: '232', strength: 2.0},
+    {source: '157', target: '255', strength: 2.0},
+    {source: '157', target: '257', strength: 2.0},
+    {source: '158', target: '215', strength: 2.0},
+    {source: '158', target: '217', strength: 2.0},
+    {source: '158', target: '256', strength: 2.0},
+    {source: '158', target: '258', strength: 2.0},
+    {source: '159', target: '216', strength: 2.0},
+    {source: '159', target: '234', strength: 2.0},
+    {source: '159', target: '255', strength: 2.0},
+    {source: '160', target: '195', strength: 2.0},
+    {source: '160', target: '213', strength: 2.0},
+    {source: '160', target: '215', strength: 2.0},
+    {source: '160', target: '254', strength: 2.0},
+    {source: '161', target: '173', strength: 2.0},
+    {source: '161', target: '194', strength: 2.0},
+    {source: '161', target: '195', strength: 2.0},
+    {source: '161', target: '214', strength: 2.0},
+    {source: '161', target: '251', strength: 2.0},
+    {source: '162', target: '169', strength: 2.0},
+    {source: '162', target: '173', strength: 2.0},
+    {source: '162', target: '252', strength: 2.0},
+    {source: '162', target: '254', strength: 2.0},
+    {source: '163', target: '168', strength: 2.0},
+    {source: '163', target: '169', strength: 2.0},
+    {source: '163', target: '171', strength: 2.0},
+    {source: '163', target: '173', strength: 2.0},
+    {source: '163', target: '174', strength: 2.0},
+    {source: '163', target: '213', strength: 2.0},
+    {source: '163', target: '246', strength: 2.0},
+    {source: '163', target: '249', strength: 2.0},
+    {source: '163', target: '251', strength: 2.0},
+    {source: '163', target: '252', strength: 2.0},
+    {source: '164', target: '169', strength: 2.0},
+    {source: '164', target: '250', strength: 2.0},
+    {source: '164', target: '271', strength: 2.0},
+    {source: '165', target: '168', strength: 2.0},
+    {source: '165', target: '169', strength: 2.0},
+    {source: '165', target: '249', strength: 2.0},
+    {source: '165', target: '250', strength: 2.0},
+    {source: '166', target: '169', strength: 2.0},
+    {source: '166', target: '170', strength: 2.0},
+    {source: '168', target: '171', strength: 2.0},
+    {source: '168', target: '249', strength: 2.0},
+    {source: '171', target: '249', strength: 2.0},
+    {source: '172', target: '212', strength: 2.0},
+    {source: '172', target: '213', strength: 2.0},
+    {source: '173', target: '194', strength: 2.0},
+    {source: '173', target: '213', strength: 2.0},
+    {source: '173', target: '214', strength: 2.0},
+    {source: '174', target: '214', strength: 2.0},
+    {source: '175', target: '179', strength: 2.0},
+    {source: '175', target: '180', strength: 2.0},
+    {source: '175', target: '184', strength: 2.0},
+    {source: '175', target: '192', strength: 2.0},
+    {source: '175', target: '193', strength: 2.0},
+    {source: '175', target: '237', strength: 2.0},
+    {source: '175', target: '238', strength: 2.0},
+    {source: '176', target: '179', strength: 2.0},
+    {source: '176', target: '180', strength: 2.0},
+    {source: '176', target: '181', strength: 2.0},
+    {source: '176', target: '238', strength: 2.0},
+    {source: '176', target: '242', strength: 2.0},
+    {source: '176', target: '243', strength: 2.0},
+    {source: '176', target: '244', strength: 2.0},
+    {source: '176', target: '301', strength: 2.0},
+    {source: '177', target: '180', strength: 2.0},
+    {source: '177', target: '181', strength: 2.0},
+    {source: '177', target: '182', strength: 2.0},
+    {source: '177', target: '244', strength: 2.0},
+    {source: '178', target: '181', strength: 2.0},
+    {source: '178', target: '182', strength: 2.0},
+    {source: '178', target: '243', strength: 2.0},
+    {source: '179', target: '182', strength: 2.0},
+    {source: '179', target: '238', strength: 2.0},
+    {source: '179', target: '239', strength: 2.0},
+    {source: '179', target: '242', strength: 2.0},
+    {source: '179', target: '301', strength: 2.0},
+    {source: '180', target: '191', strength: 2.0},
+    {source: '182', target: '185', strength: 2.0},
+    {source: '184', target: '196', strength: 2.0},
+    {source: '185', target: '188', strength: 2.0},
+    {source: '186', target: '189', strength: 2.0},
+    {source: '186', target: '196', strength: 2.0},
+    {source: '188', target: '203', strength: 2.0},
+    {source: '188', target: '205', strength: 2.0},
+    {source: '189', target: '196', strength: 2.0},
+    {source: '189', target: '205', strength: 2.0},
+    {source: '190', target: '193', strength: 2.0},
+    {source: '190', target: '205', strength: 2.0},
+    {source: '192', target: '214', strength: 2.0},
+    {source: '193', target: '205', strength: 2.0},
+    {source: '193', target: '206', strength: 2.0},
+    {source: '193', target: '207', strength: 2.0},
+    {source: '193', target: '214', strength: 2.0},
+    {source: '193', target: '215', strength: 2.0},
+    {source: '193', target: '237', strength: 2.0},
+    {source: '194', target: '214', strength: 2.0},
+    {source: '194', target: '236', strength: 2.0},
+    {source: '194', target: '237', strength: 2.0},
+    {source: '194', target: '238', strength: 2.0},
+    {source: '194', target: '246', strength: 2.0},
+    {source: '194', target: '251', strength: 2.0},
+    {source: '195', target: '216', strength: 2.0},
+    {source: '195', target: '234', strength: 2.0},
+    {source: '195', target: '236', strength: 2.0},
+    {source: '195', target: '253', strength: 2.0},
+    {source: '196', target: '235', strength: 2.0},
+    {source: '196', target: '237', strength: 2.0},
+    {source: '197', target: '200', strength: 2.0},
+    {source: '197', target: '203', strength: 2.0},
+    {source: '197', target: '205', strength: 2.0},
+    {source: '197', target: '216', strength: 2.0},
+    {source: '197', target: '218', strength: 2.0},
+    {source: '197', target: '232', strength: 2.0},
+    {source: '197', target: '234', strength: 2.0},
+    {source: '198', target: '233', strength: 2.0},
+    {source: '198', target: '235', strength: 2.0},
+    {source: '200', target: '203', strength: 2.0},
+    {source: '200', target: '218', strength: 2.0},
+    {source: '202', target: '219', strength: 2.0},
+    {source: '202', target: '221', strength: 2.0},
+    {source: '203', target: '216', strength: 2.0},
+    {source: '203', target: '218', strength: 2.0},
+    {source: '204', target: '217', strength: 2.0},
+    {source: '205', target: '216', strength: 2.0},
+    {source: '206', target: '215', strength: 2.0},
+    {source: '208', target: '211', strength: 2.0},
+    {source: '208', target: '212', strength: 2.0},
+    {source: '208', target: '213', strength: 2.0},
+    {source: '209', target: '212', strength: 2.0},
+    {source: '218', target: '232', strength: 2.0},
+    {source: '221', target: '230', strength: 2.0},
+    {source: '222', target: '302', strength: 2.0},
+    {source: '223', target: '228', strength: 2.0},
+    {source: '223', target: '229', strength: 2.0},
+    {source: '223', target: '302', strength: 2.0},
+    {source: '224', target: '227', strength: 2.0},
+    {source: '224', target: '229', strength: 2.0},
+    {source: '234', target: '255', strength: 2.0},
+    {source: '236', target: '272', strength: 2.0},
+    {source: '236', target: '274', strength: 2.0},
+    {source: '237', target: '301', strength: 2.0},
+    {source: '238', target: '246', strength: 2.0},
+    {source: '238', target: '274', strength: 2.0},
+    {source: '238', target: '301', strength: 2.0},
+    {source: '239', target: '242', strength: 2.0},
+    {source: '239', target: '246', strength: 2.0},
+    {source: '239', target: '247', strength: 2.0},
+    {source: '239', target: '274', strength: 2.0},
+    {source: '239', target: '301', strength: 2.0},
+    {source: '240', target: '248', strength: 2.0},
+    {source: '240', target: '249', strength: 2.0},
+    {source: '240', target: '273', strength: 2.0},
+    {source: '240', target: '274', strength: 2.0},
+    {source: '241', target: '247', strength: 2.0},
+    {source: '241', target: '248', strength: 2.0},
+    {source: '241', target: '274', strength: 2.0},
+    {source: '242', target: '245', strength: 2.0},
+    {source: '242', target: '247', strength: 2.0},
+    {source: '242', target: '248', strength: 2.0},
+    {source: '242', target: '301', strength: 2.0},
+    {source: '243', target: '247', strength: 2.0},
+    {source: '244', target: '247', strength: 2.0},
+    {source: '246', target: '249', strength: 2.0},
+    {source: '246', target: '251', strength: 2.0},
+    {source: '251', target: '272', strength: 2.0},
+    {source: '252', target: '270', strength: 2.0},
+    {source: '252', target: '271', strength: 2.0},
+    {source: '253', target: '270', strength: 2.0},
+    {source: '253', target: '272', strength: 2.0},
+    {source: '254', target: '267', strength: 2.0},
+    {source: '255', target: '268', strength: 2.0},
+    {source: '255', target: '270', strength: 2.0},
+    {source: '256', target: '264', strength: 2.0},
+    {source: '256', target: '267', strength: 2.0},
+    {source: '257', target: '265', strength: 2.0},
+    {source: '257', target: '266', strength: 2.0},
+    {source: '258', target: '265', strength: 2.0},
+    {source: '259', target: '262', strength: 2.0},
+    {source: '259', target: '263', strength: 2.0},
+    {source: '259', target: '265', strength: 2.0},
+    {source: '264', target: '267', strength: 2.0},
+    {source: '275', target: '281', strength: 2.0},
+    {source: '276', target: '281', strength: 2.0},
+    {source: '277', target: '280', strength: 2.0},
+    {source: '277', target: '281', strength: 2.0},
+    {source: '277', target: '282', strength: 2.0},
+    {source: '278', target: '281', strength: 2.0},
+    {source: '278', target: '282', strength: 2.0},
+    {source: '278', target: '283', strength: 2.0},
+    {source: '279', target: '282', strength: 2.0},
+    {source: '279', target: '283', strength: 2.0},
+    {source: '279', target: '284', strength: 2.0},
+    {source: '280', target: '283', strength: 2.0},
+    {source: '280', target: '284', strength: 2.0},
+    {source: '280', target: '285', strength: 2.0},
+    {source: '281', target: '284', strength: 2.0},
+    {source: '281', target: '285', strength: 2.0},
+    {source: '281', target: '286', strength: 2.0},
+    {source: '282', target: '285', strength: 2.0},
+    {source: '282', target: '286', strength: 2.0},
+    {source: '282', target: '287', strength: 2.0},
+    {source: '283', target: '286', strength: 2.0},
+    {source: '283', target: '287', strength: 2.0},
+    {source: '283', target: '288', strength: 2.0},
+    {source: '284', target: '287', strength: 2.0},
+    {source: '284', target: '288', strength: 2.0},
+    {source: '285', target: '288', strength: 2.0},
+
+        ]
+    
+        function getNeighbors(node) {
+          return links.reduce(function (neighbors, link) {
+              if (link.target.id === node.id) {
+                neighbors.push(link.source.id)
+              } else if (link.source.id === node.id) {
+                neighbors.push(link.target.id)
+              }
+              return neighbors
+            },
+            [node.id]
+          )
+        }
+    
+        function isNeighborLink(node, link) {
+          return link.target.id === node.id || link.source.id === node.id
+        }
+    
+        function getNodeColor(node, neighbors) {
+          return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' : 'rgba(50, 50, 50, 0.05)'
+        }
+    
+        function getTextColor(node, neighbors) {
+          return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' :  'rgba(50, 50, 50, 0.05)'
+        }
+    
+        function getLinkColor(node, link) {
+          return isNeighborLink(node, link) ? 'green' : 'rgba(50, 50, 50, 0.05)'
+        }
+    
+        function selectNode(selectedNode) {
+          var neighbors = getNeighbors(selectedNode)
+            nodeElements.attr('fill', function (node) { return getNodeColor(node, neighbors)})
+            textElements.attr('fill', function (node) { return getTextColor(node, neighbors) })
+            linkElements.attr('stroke', function (link) { return getLinkColor(selectedNode, link) })
+        }
+    
+        function clickNode() {
+            nodeElements.attr('fill', "rgba(235, 149, 50)")
+            textElements.attr('fill', 'black')
+            linkElements.attr('stroke', "rgba(50, 50, 50, 0.2)")
+        }
+    
+        var width = window.innerWidth
+        var height = window.innerHeight
+    
+        var svg = d3.select("svg")
+            .attr('width', width).attr('height', height)
+            .attr("pointer-events", "all")
+            .call(d3.zoom().on("zoom", function () {
+                svg.attr("transform", d3.event.transform)
+            }))
+            .append("g")
+    
+        var linkForce = d3
+          .forceLink()
+          .id(function (link) { return link.id})
+          .strength(function (link) { return link.strength})
+    
+        var simulation = d3
+          .forceSimulation()
+          .force('link', linkForce)
+          .force('charge', d3.forceManyBody().strength(-10))
+          .force('center', d3.forceCenter(width / 2, height / 2))
+    
+        var dragDrop = d3.drag().on('start', function (node) {
+          node.fx = node.x
+          node.fy = node.y
+        }).on('drag', function (node) {
+          simulation.alphaTarget(0.7).restart()
+          node.fx = d3.event.x
+          node.fy = d3.event.y
+        }).on('end', function (node) {
+          if (!d3.event.active) {
+            simulation.alphaTarget(0)
+          }
+          node.fx = null
+          node.fy = null
+        })
+    
+        var linkElements = svg.append("g")
+          .attr("class", "links")
+          .selectAll("line")
+          .data(links)
+          .enter().append("line")
+          .attr("stroke-width", 1)
+          .attr("stroke", "rgba(50, 50, 50, 0.2)")
+    
+        var nodeElements = svg.append("g")
+          .attr("class", "nodes")
+          .selectAll("circle")
+          .data(nodes)
+          .enter().append("circle")
+          .attr("r", 5)
+          .attr("fill", "rgba(235, 149, 50)")
+          .call(dragDrop)
+          .on("mouseover", selectNode)
+          .on("mouseout", clickNode)
+    
+        var textElements = svg.append("g")
+            .attr("class", "texts")
+            .selectAll("text")
+            .data(nodes)
+            .enter().append("text")
+            .text(function (node) { return  node.label })
+            .attr("font-size", 8)
+            .attr("dx", 15)
+            .attr("dy", 4)
+            .style("pointer-events", "none");
+    
+        simulation.nodes(nodes).on('tick', () => {
+          nodeElements
+            .attr('cx', function (node) { return node.x })
+            .attr('cy', function (node) { return node.y })
+          textElements
+            .attr('x', function (node) { return node.x })
+            .attr('y', function (node) { return node.y })
+          linkElements
+            .attr('x1', function (link) { return link.source.x })
+            .attr('y1', function (link) { return link.source.y })
+            .attr('x2', function (link) { return link.target.x })
+            .attr('y2', function (link) { return link.target.y })
+        })
+    
+        simulation.force("link").links(links)
+        </script>
+        </html>
+        
